@@ -313,16 +313,16 @@ static int decode_klv_values(klv_item_t *item, klv_ctx_t *klv_ctx)
             switch (item->value)
             {
                 case 0:
-                    item->data = strdup("detector off", item->len);
+                    item->data = strdup("detector off");
                     break;
                 case 1:
-                    item->data = strdup("no icing detected", item->len);
+                    item->data = strdup("no icing detected");
                     break;
                 case 2:
-                    item->data = strdup("icing detected", item->len);
+                    item->data = strdup("icing detected");
                     break;
                 default:
-                    item->data = strdup("unsupported value", item->len);
+                    item->data = strdup("unsupported value");
             }
             break;
         case 0x23:  /* wind direction */
@@ -504,28 +504,28 @@ static int decode_klv_values(klv_item_t *item, klv_ctx_t *klv_ctx)
             switch (item->value)
             {
                 case 0:
-                    item->data = strdup("Ultranarrow", item->len);
+                    item->data = strdup("Ultranarrow");
                     break;
                 case 1:
-                    item->data = strdup("Narrow", item->len);
+                    item->data = strdup("Narrow");
                     break;
                 case 2:
-                    item->data = strdup("Medium", item->len);
+                    item->data = strdup("Medium");
                     break;
                 case 3:
-                    item->data = strdup("Wide", item->len);
+                    item->data = strdup("Wide");
                     break;
                 case 4:
-                    item->data = strdup("Ultrawide", item->len);
+                    item->data = strdup("Ultrawide");
                     break;
                 case 5:
-                    item->data = strdup("Narrow Medium", item->len);
+                    item->data = strdup("Narrow Medium");
                     break;
                 case 6:
-                    item->data = strdup("2x Ultranarrow", item->len);
+                    item->data = strdup("2x Ultranarrow");
                     break;
                 case 7:
-                    item->data = strdup("4x Ultranarrow", item->len);
+                    item->data = strdup("4x Ultranarrow");
                     break;
             }
             printf("  0x%02X (sensor fov name):\t%s", item->id, item->data);
@@ -600,22 +600,22 @@ static int decode_klv_values(klv_item_t *item, klv_ctx_t *klv_ctx)
             switch (item->value)
             {
                 case 0x00:
-                    item->data = strdup("Other", item->len);
+                    item->data = strdup("Other");
                     break;
                 case 0x01:
-                    item->data = strdup("Operational", item->len);
+                    item->data = strdup("Operational");
                     break;
                 case 0x02:
-                    item->data = strdup("Training", item->len);
+                    item->data = strdup("Training");
                     break;
                 case 0x03:
-                    item->data = strdup("Exercise", item->len);
+                    item->data = strdup("Exercise");
                     break;
                 case 0x04:
-                    item->data = strdup("Maintenance", item->len);
+                    item->data = strdup("Maintenance");
                     break;
                 case 0x05:
-                    item->data = strdup("Test", item->len);
+                    item->data = strdup("Test");
                     break;
             }
             printf("  0x%02X (operational mode):\t%s", item->id, item->data);
@@ -777,7 +777,7 @@ static void delete_klv_item_list(klv_item_t *items)
  *****************************************************************************/
 static bool has_valid_checksum(klv_ctx_t *ctx)
 {
-    uint8_t i;
+    long i;
     uint16_t bcc = 0;
     /* sum each 16-bit chunk within the buffer into a checksum */
     for (i = 0; i < ctx->payload_len - 2; i++) {
